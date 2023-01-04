@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Password Generator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="container text-center">
+    <h1>Password Generator</h1>
+    <form action="{% url 'index' %}" method="get">
+        <select name="length">
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12" selected>12</option>
+            <option value="13">13</option>
+            <option value="14">15</option>
+            <option value="15">15</option>
+            <option value="16">16</option>
+        </select> Password lengths
+        <br>
+        <input type="checkbox" name="uppercase" id="uppercase">
+        <label for="uppercase">Uppercase</label>
+        <br>
+        <input type="checkbox" name="numbers" id="numbers">
+        <label for="numbers">Numbers</label>
+        <br>
+        <input type="checkbox" name="special" id="special">
+        <label for="special">Special</label>
+        <br>
+        <input type="submit" value="Generate Password" class="btn btn-primary">
+
+    </form>
+      {% if password %}
+    <h1>Your password</h1>
+    <br>
+
+    <h4 class="alert alert-success" id="readyPass">{{ password }}</h4>
+    <button class="btn btn-success" onclick="copyEvent('readyPass')">Copy Password</button>
+
+    {% endif %}
+</div>
+
+
+<script>
+    function copyEvent(id)
+    {
+        var str = document.getElementById(id);
+        window.getSelection().selectAllChildren(str);
+        document.execCommand("Copy")
+    }
+</script>
+</body>
+</html>
